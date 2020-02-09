@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function handleButtonClick(userPick) {
+        var choices = ['rock', 'paper', 'scissors'];
+        var computerPick = choices[Math.floor(Math.random() * choices.length)];
+        
+        var outcome = '';
+        if (userPick === computerPick) {
+          outcome = 'tied';
+        } else {
+          if (userPick === 'rock') {
+            outcome = computerPick === 'scissors' ? 'won' : 'lost';
+          } else if (userPick === 'paper') {
+            outcome = computerPick === 'rock' ? 'won' : 'lost';
+          } else if (userPick === 'scissors') {
+            outcome = computerPick === 'paper' ? 'won' : 'lost';
+          }
+        }
+
+        var resultsElement = document.getElementById('results');
+        resultsElement.innerHTML = '';
+        
+        var computerPickElement = document.createElement('p');
+        computerPickElement.textContent = 'Computer picked: ' + computerPick;
+        resultsElement.appendChild(computerPickElement);
+
+        var outcomeElement = document.createElement('h2');
+        outcomeElement.textContent = 'You ' + outcome;
+        resultsElement.appendChild(outcomeElement);
+      }
+    </script>
+    <style>
+      #outer-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      #inner-container {
+        width: 500px;
+        border: 1px solid grey;
+        padding: 20px;
+      }
+
+      #buttons-container {
+        display: flex;
+      }
+
+      #results {
+        text-align: center;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      button {
+        width: 100%;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer-container">
+      <div id="inner-container">
+        <h2>Test your luck:</h2>
+        <div id="buttons-container">
+          <button onclick="handleButtonClick('rock');">Rock</button>
+          <button onclick="handleButtonClick('paper');">Paper</button>
+          <button onclick="handleButtonClick('scissors');">Scissors</button>
+        </div>
+        <div id="results"></div>
+      </div>
+    </div>
+  </body>
+</html>
