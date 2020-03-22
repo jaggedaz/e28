@@ -1,3 +1,110 @@
 [v-cloak] {
   display: none;
 }
+
+html, body {
+  background-color: #FFFAFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+p {
+  margin: 8px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Anton', sans-serif;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+button {
+  padding: 10px 20px;
+  width: 200px;
+}
+
+#app {
+  width: 800px;
+  margin: 0 auto;
+}
+
+#header h1 {
+  text-align: center;
+}  
+
+#scoring {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 30px auto;
+  border: 1px solid #452cd6;
+  background-color: #45e9ff2b;
+}
+
+#selection {
+  height: 320px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#selection button {
+  margin: 15px 0;
+}
+
+#selection img {
+  opacity: 25%;
+}
+
+#selection img:hover {
+  cursor: pointer;
+}
+
+#selection img.selected {
+  opacity: 100%;
+}
+
+#result {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 318px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid grey;
+  align-items: center;
+  background-color: white;
+}
+
+#result.result-won {
+  background-color: #c5e1a5;
+}
+
+#result.result-lost {
+  background-color: #f8bbbb;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid grey;
+}
+
+#stats>div {
+  display: flex;
+  width: 100%;
+}
+
+#stats>div>* {
+  flex-basis: 50%;
+}

@@ -2,18 +2,30 @@
 <html lang="en">
 
 <head>
-  <title>Project 1</title>
+  <title>Rock Paper Scissors</title>
   <meta charset="utf-8">
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+  <script src="./components/page-header.js" defer></script>
+  <script src="./components/player-selection.js" defer></script>
+  <script src="./components/round-results.js" defer></script>
+  <script src="./components/game-stats.js" defer></script>
   <script src="script.js" defer></script>
 
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <div id="app" v-cloak>
-    <span>{{ hello }}</span>
+    <page-header></page-header>
+    <player-selection v-if="!result" :player-selection="playerSelection" @select="handlePlayerSelection($event)" @go="handleGo()"></player-selection>
+    <round-results v-else :player-selection="playerSelection" :computer-selection="computerSelection" :result="result" @play-again="handlePlayAgain()"></round-results>
+    <game-stats :player-score="playerScore" :computer-score="computerScore" :history="history" @reset-stats="handleResetStats()"></game-stats>
+    <small>
+      <a href="https://www.vecteezy.com/free-vector/rock-paper-scissors">Rock Paper Scissors Vectors by Vecteezy</a>
+    </small>
   </div>
 </body>
 
