@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Word Scramble</title>
+  <meta charset="utf-8">
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+  <script src="script.js" defer></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <h1>Word Scramble</h1>
+    <div v-if="!isPlayerNameSubmitted">
+      <span>Enter your player name: </span>
+      <input type="text" v-model="playerName" v-on:keyup.enter="startResetGame()" />
+      <input type="button" value="Let's Play" v-on:click="startResetGame()" />
+    </div>
+    <div v-else>
+      <p>Game on, {{ playerName }}!</p>
+      <p>Your mystery word is: <strong>{{ mysteryWord }}</strong></p>
+      <p>Hint: <em>{{ words[selectedWordIndex][1] }}</em></p>
+      <div>
+        <span>Your guess: </span>
+        <input type="text" v-model="guess" v-on:keyup.enter="submitGuess()" />
+        <input type="button" value="Submit guess" v-on:click="submitGuess()" />
+      </div>
+      <div :class="{ 'correct-answer': isCorrectAnswer, 'incorrect-answer': isCorrectAnswer === false }">
+        <template v-if="isCorrectAnswer">
+          <span>You got it! Nice work.</span>
+          <input type="button" value="Play again" v-on:click="startResetGame()" />
+        </template>
+        <span v-else-if="isCorrectAnswer === false">Sorry, that's not correct. Please try again.</span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

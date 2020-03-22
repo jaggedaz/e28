@@ -1,0 +1,19 @@
+[v-cloak] {
+  display: none;
+}
+
+.correct-answer,
+.incorrect-answer {
+  margin-top: 20px;
+  padding: 10px;
+  color: white;
+  display: inline-block;
+}
+
+.correct-answer {
+  background-color: green;
+}
+
+.incorrect-answer {
+  background-color: red;
+}
