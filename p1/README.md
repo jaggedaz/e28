@@ -8,3 +8,5 @@
 - [A Beginner’s Guide to Working With Components in Vue](https://www.sitepoint.com/vue-components-intro/)
 - [VueJs Best Practices](https://blog.usejournal.com/vue-js-best-practices-c5da8d7af48d)
 - [How to Structure a Vue.js Project](https://itnext.io/how-to-structure-a-vue-js-project-29e4ddc1aeeb)
+- [Google Fonts](https://fonts.google.com/)
+- [Rock Paper Scissors Vectors by Vecteezy](https://www.vecteezy.com/free-vector/rock-paper-scissors)
