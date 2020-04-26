@@ -1,6 +1,6 @@
 <template>
-  <div id="favorites" v-if="recipes">
-    <div v-if="recipes.length">
+  <div v-if="recipes">
+    <div v-if="recipes.length" id="favorites">
       <RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
     </div>
     <div v-else>No recipes have been added to the favorites list.</div>
