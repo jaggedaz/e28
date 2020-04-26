@@ -1,7 +1,14 @@
 <template>
   <div>
     <div id="recipe-list">
-      <RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
+      <RecipeCard
+        v-for="recipe in recipes"
+        :key="recipe.id"
+        :recipe="recipe"
+        :favorites="favorites"
+        @handleAddToFavorites="handleAddToFavorites($event)"
+        @handleRemoveFromFavorites="handleRemoveFromFavorites($event)"
+      />
     </div>
     <div id="add-recipe-container">
       <button @click.prevent="handleAddRecipeClick">Add a Recipe</button>
@@ -26,13 +33,26 @@ export default {
         };
       });
     });
+
+    if (window.localStorage.getItem('favorites')) {
+      this.favorites = JSON.parse(window.localStorage.getItem('favorites'));
+    }
   },
   data() {
     return {
-      recipes: []
+      recipes: [],
+      favorites: []
     };
   },
   methods: {
+    handleAddToFavorites(recipeId) {
+      this.favorites.push(recipeId);
+      window.localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    },
+    handleRemoveFromFavorites(recipeId) {
+      this.favorites.splice(this.favorites.indexOf(recipeId), 1);
+      window.localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    },
     handleAddRecipeClick() {
       this.$router.push({ name: 'add-recipe' });
     }

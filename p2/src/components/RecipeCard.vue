@@ -4,8 +4,8 @@
     <div class="recipe-card-body">
       <div class="recipe-card-recipe-name" @click="handleClick">{{ recipe.name }}</div>
       <div v-if="$route.name !== 'favorites'" class="recipe-card-add-remove-favorite">
-        <a v-if="favorites.includes(recipe.id)" href="#" @click.stop.prevent="handleRemoveFromFavorites(recipe.id)">Remove from Favorites</a>
-        <a v-else href="#" @click.stop.prevent="handleAddToFavorites(recipe.id)">Add to Favorites</a>
+        <a v-if="favorites.includes(recipe.id)" href="#" @click.stop.prevent="$emit('handleRemoveFromFavorites', recipe.id)">Remove from Favorites</a>
+        <a v-else href="#" @click.stop.prevent="$emit('handleAddToFavorites', recipe.id)">Add to Favorites</a>
       </div>
     </div>
   </div>
@@ -13,28 +13,10 @@
 
 <script>
 export default {
-  props: ["recipe"],
-  data() {
-    return {
-      favorites: []
-    };
-  },
-  created() {
-    if (window.localStorage.getItem('favorites')) {
-      this.favorites = JSON.parse(window.localStorage.getItem('favorites'));
-    }
-  },
+  props: ['recipe', 'favorites'],
   methods: {
     handleClick() {
       this.$router.push({ name: 'recipe', params: { id: this.recipe.id } });
-    },
-    handleAddToFavorites(recipeId) {
-      this.favorites.push(recipeId);
-      window.localStorage.setItem('favorites', JSON.stringify(this.favorites));
-    },
-    handleRemoveFromFavorites(recipeId) {
-      this.favorites.splice(this.favorites.indexOf(recipeId), 1);
-      window.localStorage.setItem('favorites', JSON.stringify(this.favorites));
     }
   }
 };
