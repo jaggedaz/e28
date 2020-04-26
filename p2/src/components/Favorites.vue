@@ -38,6 +38,8 @@ export default {
       } else {
         this.recipes = [];
       }
+    } else {
+      this.recipes = [];
     }
   }
 };
