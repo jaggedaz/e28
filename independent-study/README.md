@@ -1,5 +1,15 @@
 # Using Vue.js and Firebase Cloud Firestore to Create a Simple To-Do App
 
+*By Josh Grauer*
+
+## Introduction
+
+I really like Firebase.  I like that I can get all my back end services in one place: authentication, database,
+serverless functions, and hosting.  Best of  all, the free tier gives you access to everything and a generous
+allowance to start out with.  In this independent study I'll be exploring just one component of firebase: the
+Firestore.  My goal is to evaluate how well Firestore can be integrated into a Vue.js application and build a
+simple CRUD application so that I can learn more about using Firestore and NoSQL databases in general.
+
 ## Vue Project Setup
 
 To get things going we'll be using the [Vue CLI](https://cli.vuejs.org/) to quickly create a new Vue project and
@@ -13,7 +23,10 @@ Let's get started:
 Enter to accept the default configuration.
 3. Now run `npm run serve` to start the application.  Navigate to "http://localhost:8080" within your browser
 and verify that the "Welcome to Your Vue.js App" page loads.
-4. Since our application is very basic, we can get rid of a few things that the CLI created, you can delete both
+
+<img src="images/vuecli.png" alt="Vue CLI template page" />
+
+Since our application is very basic, we can get rid of a few things that the CLI created, you can delete both
 the "assets" and "components" folders.
 
 Now we're ready to build out our application.  Open up `App.vue` and replace it's contents with the following:
@@ -68,6 +81,8 @@ export default {
 Now if you run the application you'll see that we have a super basic to-do app that allows the user to add and
 remove to-do items.  But what happens if you refresh the page?  All of your to-do items disappear!  Let's setup
 Firebase to track our to-do list so that we don't lose our items on every page load.
+
+<img src="images/todo-start.png" alt="To-Do App Start" />
 
 ## Adding Firebase to the Vue Project
 
@@ -200,7 +215,9 @@ Now update our template to pass the item ID with the index:
 
 ## Conclusion
 
-This was my first time working with a no-SQL data store and I did find it somewhat confusing that query results
+<img src="images/todo-end.png" alt="To-Do App End" />
+
+This was my first time working with a NoSQL data store and I did find it somewhat confusing that query results
 weren't just coming back with the raw data but were coming back with document references.  Maybe that's just a Firestore
 thing.  In the end I found that Firestore integrated quite well with Vue and I definitely think I would use it
 for my next Vue project.
