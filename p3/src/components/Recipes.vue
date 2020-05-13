@@ -18,43 +18,37 @@
 
 <script>
 import RecipeCard from "./RecipeCard.vue";
-import { db } from '../App.vue';
 
 export default {
   components: {
     RecipeCard
   },
   created() {
-    db.collection('recipes').get().then(querySnapshot => {
-      this.recipes = querySnapshot.docs.map(doc => {
-        return {
-          id: doc.id,
-          ...doc.data()
-        };
-      });
-    });
-
-    if (window.localStorage.getItem('favorites')) {
-      this.favorites = JSON.parse(window.localStorage.getItem('favorites'));
+    if (window.localStorage.getItem("favorites")) {
+      this.favorites = JSON.parse(window.localStorage.getItem("favorites"));
     }
   },
   data() {
     return {
-      recipes: [],
       favorites: []
     };
   },
   methods: {
     handleAddToFavorites(recipeId) {
       this.favorites.push(recipeId);
-      window.localStorage.setItem('favorites', JSON.stringify(this.favorites));
+      window.localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
     handleRemoveFromFavorites(recipeId) {
       this.favorites.splice(this.favorites.indexOf(recipeId), 1);
-      window.localStorage.setItem('favorites', JSON.stringify(this.favorites));
+      window.localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
     handleAddRecipeClick() {
-      this.$router.push({ name: 'add-recipe' });
+      this.$router.push({ name: "add-recipe" });
+    }
+  },
+  computed: {
+    recipes() {
+      return this.$store.state.recipes;
     }
   }
 };

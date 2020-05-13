@@ -8,9 +8,7 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
 import RecipeCard from "./RecipeCard.vue";
-import { db } from '../App.vue';
 
 export default {
   components: {
@@ -18,28 +16,20 @@ export default {
   },
   data() {
     return {
-      recipes: null
+      favorites: []
     };
   },
   created() {
     if (window.localStorage.getItem("favorites")) {
       const favorites = JSON.parse(window.localStorage.getItem("favorites"));
       if (favorites.length) {
-        db.collection('recipes')
-          .where(firebase.firestore.FieldPath.documentId(), 'in', favorites)
-          .get().then(querySnapshot => {
-            this.recipes = querySnapshot.docs.map(doc => {
-              return {
-                id: doc.id,
-                ...doc.data()
-              };
-            });
-          });
-      } else {
-        this.recipes = [];
+        this.favorites = favorites;
       }
-    } else {
-      this.recipes = [];
+    }
+  },
+  computed: {
+    recipes() {
+      return this.$store.getters.getRecipesByIds(this.favorites);
     }
   }
 };

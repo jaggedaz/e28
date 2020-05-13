@@ -10,7 +10,11 @@
       <input type="text" v-model="imageUrl" style="width: 100%;" />
     </label>
     <h2>Ingredients</h2>
-    <div v-for="(ingredient, index) in ingredients" :key="'ingredient-' + index" class="ingredient-container">
+    <div
+      v-for="(ingredient, index) in ingredients"
+      :key="'ingredient-' + index"
+      class="ingredient-container"
+    >
       <label>
         Qty
         <input type="text" v-model="ingredient.qty" placeholder="1 cup" />
@@ -44,49 +48,46 @@
 </template>
 
 <script>
-import { db } from '../App.vue';
-
 export default {
   name: "AddRecipe",
   data() {
     return {
-      name: '',
-      imageUrl: '',
+      name: "",
+      imageUrl: "",
       ingredients: [
-        { qty: '', name: '' },
-        { qty: '', name: '' },
-        { qty: '', name: '' }
+        { qty: "", name: "" },
+        { qty: "", name: "" },
+        { qty: "", name: "" }
       ],
-      directions: [
-        { value: '' },
-        { value: '' },
-        { value: '' }
-      ]
-    }
+      directions: [{ value: "" }, { value: "" }, { value: "" }]
+    };
   },
   methods: {
     handleRemoveIngredientClick(index) {
       this.ingredients.splice(index, 1);
     },
     handleAddIngredientClick() {
-      this.ingredients.push({ qty: '', name: '' });
+      this.ingredients.push({ qty: "", name: "" });
     },
     handleRemoveStepClick(index) {
       this.directions.splice(index, 1);
     },
     handleAddStepClick() {
-      this.directions.push({ value: '' });
+      this.directions.push({ value: "" });
     },
     handleSubmit() {
-      db.collection('recipes').add({
-        name: this.name,
-        imageUrl: this.imageUrl,
-        ingredients: this.ingredients.filter(ingredient => ingredient.name),
-        directions: this.directions.filter(step => step.value).map(step => step.value)
-      })
-      .then(() => {
-        this.$router.push({ name: 'recipes' });
-      });
+      this.$store
+        .dispatch("addRecipe", {
+          name: this.name,
+          imageUrl: this.imageUrl,
+          ingredients: this.ingredients.filter(ingredient => ingredient.name),
+          directions: this.directions
+            .filter(step => step.value)
+            .map(step => step.value)
+        })
+        .then(() => {
+          this.$router.push({ name: "recipes" });
+        });
     }
   }
 };
@@ -98,12 +99,12 @@ label {
   padding-bottom: 15px;
 }
 
-input[type=text] {
-  display:block;
+input[type="text"] {
+  display: block;
   margin-top: 5px;
 }
 
-input[type=submit] {
+input[type="submit"] {
   padding: 15px 50px;
   margin-top: 30px;
   text-transform: uppercase;

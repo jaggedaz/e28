@@ -6,6 +6,7 @@ import Favorites from './components/Favorites.vue';
 import ShoppingList from './components/ShoppingList.vue';
 import Recipe from './components/Recipe.vue';
 import AddRecipe from './components/AddRecipe.vue';
+import store from '@/common/store'
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,7 @@ const router = new VueRouter({
 });
 
 new Vue({
+  store: store,
   router: router,
   render: h => h(App),
 }).$mount('#app')

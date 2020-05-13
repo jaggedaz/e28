@@ -30,23 +30,13 @@
 </template>
 
 <script>
-import { db } from "../App.vue";
-
 export default {
   data() {
     return {
-      recipe: null,
       shoppingList: []
     };
   },
   created() {
-    db.collection("recipes")
-      .doc(this.$route.params.id)
-      .get()
-      .then(doc => {
-        this.recipe = doc.data();
-      });
-
     if (window.localStorage.getItem("shoppingList")) {
       this.shoppingList = JSON.parse(
         window.localStorage.getItem("shoppingList")
@@ -67,6 +57,11 @@ export default {
         "shoppingList",
         JSON.stringify(this.shoppingList)
       );
+    }
+  },
+  computed: {
+    recipe() {
+      return this.$store.getters.getRecipeById(this.$route.params.id);
     }
   }
 };

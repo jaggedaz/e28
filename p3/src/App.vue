@@ -22,6 +22,9 @@ export default {
   name: "App",
   components: {
     Header
+  },
+  created() {
+    this.$store.dispatch('fetchRecipes');
   }
 };
 </script>
