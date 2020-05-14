@@ -6,11 +6,13 @@ import Favorites from './components/Favorites.vue';
 import ShoppingList from './components/ShoppingList.vue';
 import Recipe from './components/Recipe.vue';
 import AddRecipe from './components/AddRecipe.vue';
-import store from '@/common/store'
+import store from '@/common/store';
+import Vuelidate from 'vuelidate';
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 
 const router = new VueRouter({
   routes: [
